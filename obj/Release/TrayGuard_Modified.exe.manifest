@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="TrayGuard_Modified.exe" version="1.0.0.11" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="TrayGuard_Modified.exe" version="1.0.2.5" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Everaldo-Crystal-Clear-App-ark-2.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="TrayGuard_Modified" version="1.0.0.5" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="TrayGuard_Modified" version="1.0.830.1130" language="neutral" processorArchitecture="msil" />
     <commandLine file="TrayGuard_Modified.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -67,14 +67,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TrayGuard_Modified.exe" size="1334672">
-      <assemblyIdentity name="TrayGuard_Modified" version="1.0.0.5" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TrayGuard_Modified.exe" size="1328608">
+      <assemblyIdentity name="TrayGuard_Modified" version="1.0.830.1130" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CT4A+brIaE6csxBWpg/h+EwAAQORDs997GMXxyIaTek=</dsig:DigestValue>
+        <dsig:DigestValue>ZdNJItukxAU/IhZ/+jZTMxw+EPLqCj66ANz+Ijc+ZB4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -108,13 +108,22 @@
       <dsig:DigestValue>sqhIgLQwqtvt5Ku/N1EHbnRSguyW0ZC9JAu0mQcREDM=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="info.ini" size="251">
+  <file name="form.ini" size="25">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>W6Z2FrohitaQE8iG0kgFiOekrEbn/nJn1Ni+hZBXiCc=</dsig:DigestValue>
+      <dsig:DigestValue>pHHDH1OJhgptK63YcR72PPPsRRf1s6d9+jSD+rF1CVM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="info.ini" size="252">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>oQ71w47X0TtRY7Wx8aSv41g7et4Wzm6pJPMC5CoSRfc=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Interop.Microsoft.Office.Core.dll" size="430592">

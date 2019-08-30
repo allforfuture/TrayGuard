@@ -588,3 +588,112 @@ D:\code\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.exe.manifest
 D:\code\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.application
 D:\code\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.exe
 D:\code\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.pdb
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.csprojAssemblyReference.cache
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.csproj.ResolveComReference.cache
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmModuleFind.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmCartonOnPallet.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmMasterLabel.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmCartonAdjust.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmPallet.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmMasterCriteria.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmMasterUser.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmInvoiceNo.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmCarton.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmPack.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmPackInCarton.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmTrayInPack.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmModuleReplace.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmCapacity.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmLogin.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmModuleInTray.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmTray.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.Properties.Resources.resources
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.csproj.GenerateResource.cache
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.csproj.CoreCompileInputs.cache
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.exe
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.pdb
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\info.ini
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\Interop.Microsoft.Office.Core.dll
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\Interop.VBIDE.dll
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.exe.config
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.exe.manifest
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.application
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.exe
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.pdb
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.exe.manifest
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.application
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\obj\Debug\TrayGuard.csproj.CopyComplete
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\zxing.pdb
+C:\Users\yyx19\Desktop\临时回收站\新建文件夹 (11)\TrayGuard_All_kk07\bin\Release\zxing.xml
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\info.ini
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\Interop.Microsoft.Office.Core.dll
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\Interop.VBIDE.dll
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.exe.config
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.exe.manifest
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.application
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.exe
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\TrayGuard_Modified.pdb
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\zxing.pdb
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\bin\Release\zxing.xml
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.csprojAssemblyReference.cache
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.csproj.ResolveComReference.cache
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmModuleFind.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmCartonOnPallet.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmMasterLabel.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmCartonAdjust.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmPallet.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmMasterCriteria.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmMasterUser.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmInvoiceNo.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmCarton.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmPack.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmPackInCarton.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmTrayInPack.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmModuleReplace.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmCapacity.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmLogin.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmModuleInTray.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.frmTray.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.Properties.Resources.resources
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.csproj.GenerateResource.cache
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.csproj.CoreCompileInputs.cache
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.exe.manifest
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.application
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard.csproj.CopyComplete
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.exe
+C:\Users\yyx19\Desktop\TrayGuard\20190726\TrayGuard_All_kk07\obj\Debug\TrayGuard_Modified.pdb
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.csproj.ResolveComReference.cache
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmModuleFind.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmCartonOnPallet.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmMasterLabel.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmCartonAdjust.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmPallet.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmMasterCriteria.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmMasterUser.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmInvoiceNo.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmCarton.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmPack.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmPackInCarton.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmTrayInPack.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmModuleReplace.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmCapacity.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmLogin.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmModuleInTray.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.frmTray.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.Properties.Resources.resources
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.csproj.GenerateResource.cache
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.csproj.CoreCompileInputs.cache
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\form.ini
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\info.ini
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\Interop.Microsoft.Office.Core.dll
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\Interop.VBIDE.dll
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\TrayGuard_Modified.exe.config
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\TrayGuard_Modified.exe.manifest
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\TrayGuard_Modified.application
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\TrayGuard_Modified.exe
+C:\Users\yyx19\Desktop\TrayGuard\bin\Debug\TrayGuard_Modified.pdb
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard_Modified.exe.manifest
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard_Modified.application
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard.csproj.CopyComplete
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard_Modified.exe
+C:\Users\yyx19\Desktop\TrayGuard\obj\Debug\TrayGuard_Modified.pdb

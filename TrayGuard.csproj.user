@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
-    <PublishUrlHistory>D:\publish\TrayGuard\kk07\|D:\publish\TrayGuard\|D:\IIS\Deploy_trayguard\|D:\J100043320\99.開発\03.出荷トレース\IIS\Deploy_trayguard\|publish\</PublishUrlHistory>
+    <PublishUrlHistory>publish\|D:\publish\TrayGuard\kk07\|D:\publish\TrayGuard\|D:\IIS\Deploy_trayguard\|D:\J100043320\99.開発\03.出荷トレース\IIS\Deploy_trayguard\</PublishUrlHistory>
     <InstallUrlHistory>http://172.27.42.15:9601/|http://127.0.0.1:9601/</InstallUrlHistory>
     <SupportUrlHistory>
     </SupportUrlHistory>

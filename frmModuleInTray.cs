@@ -49,7 +49,16 @@ namespace TrayGuard
         string userRole;
         string bin = string.Empty;
         int okCount;
-        int capacity = 24;
+
+
+
+        //int capacity = 24;
+
+        //20190228修改将固定的28改成配置文件
+        //int capacity = 28;
+        int capacity = int.Parse(TfSQL.readIni_static("OK COUNT", "CAPACITY", Environment.CurrentDirectory + @"\form.ini"));
+
+
         string maxLot;
         DateTime registerDate;
         bool sound;
@@ -686,7 +695,8 @@ namespace TrayGuard
                 txtTrayId.Text = String.Empty;
                 txtModuleId.Text = String.Empty;
                 dtModule.Clear();
-                capacity = 24;
+                //capacity = 24;
+                capacity = int.Parse(TfSQL.readIni_static("OK COUNT", "CAPACITY", Environment.CurrentDirectory + @"\form.ini"));
                 updateDataGridViews(dtModule, ref dgvModule);
             }
         }
@@ -938,6 +948,10 @@ namespace TrayGuard
         // スーパーユーザーに限り、登録済みトレーをキャンセルできる（パック後は不可）
         private void btnCancelTray_Click(object sender, EventArgs e)
         {
+            string trayId = txtTrayId.Text;
+            TfSQL tf = new TfSQL();
+            if (!tf.sqlChkEffective(trayId))
+                return;
             // 本当に削除してよいか、２重で確認する。
             DialogResult result1 = MessageBox.Show("Do you really want to cancel this tray?",　"Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (result1 == DialogResult.No) return;
@@ -945,8 +959,7 @@ namespace TrayGuard
             DialogResult result2 = MessageBox.Show("Are you really sure? Please select NO if you are not sure.", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (result2 == DialogResult.No) return;
 
-            string trayId = txtTrayId.Text;
-            TfSQL tf = new TfSQL();
+            
             //キャンセルの前に、packされたかどうかを確認（2017/09/18 呉）
             if (tf.sqlChkPackofTray(trayId)!="OK") return;
 

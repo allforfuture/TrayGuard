@@ -35,6 +35,17 @@ namespace TrayGuard
             int strref = GetPrivateProfileString(section, key, def, retVal, size, cfs);
             return retVal.ToString();
         }
+        public static string readIni_static(string s, string k, string cfs)
+        {
+            StringBuilder retVal = new StringBuilder(255);
+            string section = s;
+            string key = k;
+            string def = String.Empty;
+            int size = 255;
+            int strref = GetPrivateProfileString(section, key, def, retVal, size, cfs);
+            return retVal.ToString();
+        }
+
         // Windows API をインポート
         [DllImport("kernel32")]
         private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filepath);
@@ -1190,6 +1201,44 @@ namespace TrayGuard
                 MessageBox.Show(ex.Message, "Database Responce", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 connection.Close();
                 return "NG";
+            }
+        }
+                
+        public bool sqlChkEffective(string tray_id)
+        {
+            string sql = string.Format(@"select count(*) from pnt_pack
+                                where tray_id = '{0}'
+                                and status = '1'"
+                                , tray_id);
+            connection = new NpgsqlConnection(conStringTrayGuardDb);
+            connection.Open();
+
+            try
+            {
+                NpgsqlCommand command = new NpgsqlCommand(sql, connection);
+                IDataReader dr = command.ExecuteReader();
+                string count="";
+                while (dr.Read())
+                {
+                    count = dr[0].ToString();
+                }
+                dr.Close();
+                dr = null;
+                connection.Close();
+
+                if (count == "0")
+                    return true;
+                else
+                {
+                    MessageBox.Show("这盆马达已经捆包，请勿取消", "Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Database Responce", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                connection.Close();
+                return false;
             }
         }
     }

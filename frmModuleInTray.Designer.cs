@@ -285,6 +285,7 @@ namespace TrayGuard
             // 
             // cmbBinShift
             // 
+            this.cmbBinShift.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBinShift.Enabled = false;
             this.cmbBinShift.FormattingEnabled = true;
             this.cmbBinShift.Items.AddRange(new object[] {
