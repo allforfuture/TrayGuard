@@ -28,7 +28,7 @@ namespace TrayGuard
 
         //その他非ローカル変数
         DataTable dtTray;
-        string userRole;
+        public static string userRole;
         string userId;
 
         // コンストラクタ

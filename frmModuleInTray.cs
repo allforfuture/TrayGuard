@@ -479,6 +479,25 @@ namespace TrayGuard
                 MessageBox.Show("Small letter is forbidden!","Notice");
                 return;
             }
+            
+            if (frmTray.userRole != "super")//权限
+            {
+                string codeDate = txtModuleId.Text.Substring(3, 4);
+                #region 检验是否全数字
+                //n位定长的数字：^\d{n}$
+                if (!new Regex(@"^\d{4}$").IsMatch(codeDate))
+                {
+                    MessageBox.Show("Bad date code format for serial number!", "Notice");
+                    return;
+                }
+                #endregion
+                DateTime pd = GetProductDate(codeDate);
+                if (pd < DateTime.Today.AddDays(-180))
+                {
+                    MessageBox.Show("The serial number has a production date of more than 180 days!", "Notice");
+                    return;
+                }
+            }
 
             // ＢＡＳＥシリアルからＨＯＯＰシリアルを取得し（ステップ１）、両方のシリアルに該当する、テスト結果・プロセス名・テスト日時を取得する（ステップ２、ステップ３）
             TfSQL tf = new TfSQL();
@@ -553,6 +572,41 @@ namespace TrayGuard
             //トレー登録の準備確認
             PreparePrintWhen24();
             
+        }
+        
+        DateTime GetProductDate(string dateCode)
+        {
+            DateTime today = DateTime.Today;
+            string Y = dateCode.Substring(0, 1);
+            string W = dateCode.Substring(1, 2);
+            string D = dateCode.Substring(3);
+            //年
+            while (today.Year.ToString().Substring(3) != Y)
+                today = today.AddYears(-1);
+            //周
+            GregorianCalendar gc = new GregorianCalendar();
+            while (true)
+            {
+                string todatWeek = string.Format("{0:d2}", gc.GetWeekOfYear(today, CalendarWeekRule.FirstDay, DayOfWeek.Sunday));
+                if (Convert.ToUInt16(todatWeek) > Convert.ToUInt16(W))
+                    today = today.AddDays(-7);
+                else if (Convert.ToUInt16(todatWeek) < Convert.ToUInt16(W))
+                    today = today.AddDays(7);
+                else if (Convert.ToUInt16(todatWeek) == Convert.ToUInt16(W))
+                    break;
+            }
+            //日
+            while (true)
+            {
+                //(int)today.DayOfWeek + 1
+                if ((int)today.DayOfWeek + 1 > Convert.ToUInt16(D))
+                    today = today.AddDays(-1);
+                else if ((int)today.DayOfWeek + 1 < Convert.ToUInt16(D))
+                    today = today.AddDays(1);
+                else if ((int)today.DayOfWeek + 1 == Convert.ToUInt16(D))
+                    break;
+            }
+            return today;
         }
 
         // サブプロシージャ：シリアルの構成要素のパターンが適正か、ユーザーデスクトップの設定ファイルを使用して確認する
