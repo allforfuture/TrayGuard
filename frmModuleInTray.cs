@@ -492,9 +492,11 @@ namespace TrayGuard
                 }
                 #endregion
                 DateTime pd = GetProductDate(codeDate);
-                if (pd < DateTime.Today.AddDays(-180))
+                //TfSQL.readIni_static
+                int productionDate = int.Parse(TfSQL.readIni_static("SHELF LIFE", "PRODUCTION DATE", Environment.CurrentDirectory + @"\form.ini"));
+                if (pd < DateTime.Today.AddDays(-productionDate))
                 {
-                    MessageBox.Show("The serial number has a production date of more than 180 days!", "Notice");
+                    MessageBox.Show($"The serial number has a production date of more than {productionDate} days!", "Notice");
                     return;
                 }
             }

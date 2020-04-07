@@ -80,7 +80,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>09C1933D8E9A336EB7FC32360B1546D468A34F04</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8097B13CFCCED81B87D144F0ABF60AF52BC40CED</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>TrayGuard_TemporaryKey.pfx</ManifestKeyFile>
