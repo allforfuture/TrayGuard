@@ -760,12 +760,15 @@ namespace TrayGuard
             string multiLot = dtLot.Columns.Count >= 3 ? "T" : "F";
             int qty = (int)dtLot.Rows[0]["total"];
             string lotLine = VBS.Mid(maxLot, 8, 1);
-            int year = int.Parse("201" + VBS.Mid(maxLot, 4, 1));
-            int week = int.Parse(VBS.Mid(maxLot, 5, 2));
-            int day = int.Parse(VBS.Mid(maxLot, 7, 1));
-            DateTime lotDate = getFirstDateOfWeek(year, week, CultureInfo.CurrentCulture).AddDays(day - 1); //
+
+            //int year = int.Parse("201" + VBS.Mid(maxLot, 4, 1));
+            //int week = int.Parse(VBS.Mid(maxLot, 5, 2));
+            //int day = int.Parse(VBS.Mid(maxLot, 7, 1));
+            //DateTime lotDate = getFirstDateOfWeek(year, week, CultureInfo.CurrentCulture).AddDays(day - 1);
+            DateTime lotDate = changeDateFormat(maxLot.Substring(3,4));
+
             string sql0 = "LOCK TABLE t_tray IN ACCESS EXCLUSIVE MODE";   // 重複トレーＩＤ防止のため、テーブル t_tray の読み取りロック
-            string sql1 = "select MAX(tray_id) from t_tray where lot_date ='" + lotDate.ToString("yyMMdd") + "' and " +
+            string sql1 = "select MAX(substring(tray_id,15,3)) from t_tray where lot_date ='" + lotDate.ToString("yyMMdd") + "' and " +
                 "rg_dept ='" + udept + "' and " + "line ='" + lotLine + "'";
             System.Diagnostics.Debug.Print(sql1);
 
@@ -787,7 +790,7 @@ namespace TrayGuard
                 string trayNew;
                 if (trayOld != string.Empty)
                 {
-                    int serialOld = convertToIntegerSerial(VBS.Mid(trayOld, 15, 3));
+                    int serialOld = convertToIntegerSerial(trayOld);
                     string serialNew = convertToCharSerial(serialOld + 1);
                     trayNew = VBS.Left(udept, 1) + "_"+ model+"_" + lotDate.ToString("yyMMdd") + "_" + lotLine + "_" + serialNew + "_" + shift;
                 }
@@ -1085,6 +1088,43 @@ namespace TrayGuard
             int firstWeek = ci.Calendar.GetWeekOfYear(jan1, ci.DateTimeFormat.CalendarWeekRule, ci.DateTimeFormat.FirstDayOfWeek);
             if (firstWeek <= 1 || firstWeek > 50) weekOfYear -= 1;
             return firstWeekDay.AddDays(weekOfYear * 7);
+        }
+
+        ///将时间格式9013改成2019-01-03
+        DateTime changeDateFormat(string dateCode)
+        {
+            string outputTime = "";
+            string[] code = { dateCode.Substring(0, 1), dateCode.Substring(1, 2), dateCode.Substring(3, 1) };
+            #region 确定年月日
+            //确定年
+            string today = DateTime.Today.ToString("yyyy");
+            for (int i = 0; i < 10; i++)
+            {
+                if (today.Substring(3, 1).Equals(code[0]))
+                {
+                    outputTime = today;
+                }
+                else
+                {
+                    today = (Convert.ToInt16(today) - 1).ToString();
+                }
+            }
+            //确定月份和日
+            DateTime dtTemp = Convert.ToDateTime(outputTime + "-01-01");
+            GregorianCalendar gc = new GregorianCalendar();
+            for (int i = 0; i < 365; i++)
+            {
+                int weekOfYear = gc.GetWeekOfYear(dtTemp, CalendarWeekRule.FirstDay, DayOfWeek.Sunday);
+                int dayOfWeek = (int)dtTemp.DayOfWeek + 1;
+                if (weekOfYear == Convert.ToInt16(code[1]) && dayOfWeek == Convert.ToInt16(code[2]))
+                {
+                    outputTime = dtTemp.ToString("yyyy-MM-dd");
+                    break;
+                }
+                else { dtTemp = dtTemp.AddDays(1); }
+            }
+            #endregion
+            return Convert.ToDateTime(outputTime);
         }
 
         // カートンのディープキャンセル（カートン・パック・トレーのキャンセル日を登録し、モジュールレコードを削除
