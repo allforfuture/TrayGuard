@@ -269,6 +269,8 @@ namespace TrayGuard
             dt.Columns.Add("test_result", typeof(string));
             dt.Columns.Add("test_date", typeof(DateTime));
             dt.Columns.Add("r_mode", typeof(string));
+            dt.Columns.Add("api", typeof(string));
+            dt.Columns.Add("location", typeof(string));
         }
 
         // サブプロシージャ：ＤＢからデータテーブルへの読み込み
@@ -544,15 +546,18 @@ namespace TrayGuard
             dr["test_result"] = textResult;
             dr["test_date"] = DateTime.ParseExact(scanTime, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture); ;
             dr["r_mode"] = formReturnMode ? "T" : "F";
-            DataRow dr1 = dr;
+            dr["api"] = API.Judge(module);
             dtModule.Rows.Add(dr);
-
+            
             validationSN(dr);
 
-           
+            string checkTotal, checkItem;
+            checkTotal = checkItem = dr["api"].ToString() == "OK" ? "0" : "1";
+            Pqm.WriteCSV(module, checkTotal, checkItem);
+
 
             // アプリケーションフォルダに、日付とテスト結果のログを付ける
-            log = Environment.NewLine + scanTime + "," + module + "," + displayAll + ":" + textResult;
+            log = Environment.NewLine + scanTime + "," + module + "," + displayAll + ":" + textResult + "," + dr["api"].ToString();
             // log = Environment.NewLine + earlyTime + "," + module + "," + displayAll;
 
             // 同日日付のファイルが存在する場合は追記し、存在しない場合はファイルを作成追記する
@@ -1351,6 +1356,14 @@ namespace TrayGuard
                             {
                                 dgvModule["bin", i].Style.BackColor = Color.Red;
                             }
+                        }
+                        string api = dgvModule["api", i].Value.ToString();
+                        if (!(api == "OK" || api == ""))
+                        {
+                            Flag = false;
+                            string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\form.ini");
+                            dgvModule["location", i].Value = location;
+                            dgvModule["api", i].Style.BackColor = Color.Red;
                         }
                     }
                 }
