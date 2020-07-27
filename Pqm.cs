@@ -8,53 +8,27 @@ using System.IO;
 
 namespace TrayGuard
 {
-    class Document
+    class Pqm
     {
-
-        public static List<string> pathList = new List<string>()
-        {
-            //AppDomain.CurrentDomain.BaseDirectory + "log\\",
-            AppDomain.CurrentDomain.BaseDirectory + "pqm\\"
-        };
+        readonly static string iniPath = Environment.CurrentDirectory + @"\config.ini";
+        readonly static string type = TfSQL.readIni_static("CSV", "type", iniPath);
+        readonly static string factory = TfSQL.readIni_static("CSV", "factory", iniPath);
+        readonly static string building = TfSQL.readIni_static("CSV", "building", iniPath);
+        readonly static string line = TfSQL.readIni_static("CSV", "line", iniPath);
+        readonly static string process = TfSQL.readIni_static("CSV", "process", iniPath);
+        readonly static string inspect = TfSQL.readIni_static("CSV", "inspect", iniPath);
+        readonly static string machineName = TfSQL.readIni_static("CSV", "MachineName", iniPath);
+        readonly static string pqmPath = AppDomain.CurrentDomain.BaseDirectory + "pqm\\";
 
         public static void CreateDocument()
         {
-            foreach (string path in pathList)
-            {
-                Directory.CreateDirectory(path);
-            }
+            Directory.CreateDirectory(pqmPath);
         }
-    }
-
-    class Log : Document
-    {
-        public static void WriteLog(string SN, string judge)
-        {
-            string path = Document.pathList[0] + "log" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
-            using (StreamWriter file = new StreamWriter(path, true))
-            {
-                string str = DateTime.Now.ToString("yyyy/MM/dd,HH:mm:ss,")
-                    + SN + ","
-                    + judge;
-                file.WriteLine(str);// 直接追加文件末尾，换行
-            }
-        }
-    }
-
-    class Pqm : Document
-    {
-        static string type = TfSQL.readIni_static("pqm", "type", Environment.CurrentDirectory + @"\csv.ini");
-        static string factory = TfSQL.readIni_static("pqm", "factory", Environment.CurrentDirectory + @"\csv.ini");
-        static string building = TfSQL.readIni_static("pqm", "building", Environment.CurrentDirectory + @"\csv.ini");
-        static string line = TfSQL.readIni_static("pqm", "line", Environment.CurrentDirectory + @"\csv.ini");
-        static string process = TfSQL.readIni_static("pqm", "process", Environment.CurrentDirectory + @"\csv.ini");
-        static string inspect = TfSQL.readIni_static("pqm", "inspect", Environment.CurrentDirectory + @"\csv.ini");
-        static string machineName = TfSQL.readIni_static("pqm", "MachineName", Environment.CurrentDirectory + @"\csv.ini");
 
         public static void WriteCSV(string SN, string checkItem, string checkTotal)
         {
             string fileName = type + factory + building + line + process + DateTime.Now.ToString("yyyyMMddHHmmss") + SN;
-            string path = Document.pathList[1] + fileName + ".csv";
+            string path = pqmPath + fileName + ".csv";
             using (StreamWriter file = new StreamWriter(path, true))
             {
                 string[] csvStr = new string[] { type, factory, building, line, process,

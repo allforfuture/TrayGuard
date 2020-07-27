@@ -1104,6 +1104,8 @@ namespace TrayGuard
                 DataRow[] dr = dt.Select("module_id = '" + module + "'");
                 if (dr.Length >= 2)
                 {
+                    string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\form.ini");
+                    dgvModule["location", i].Value = location;
                     dgv["module_id", i].Style.BackColor = Color.Red;
                     soundAlarm();
                 }
@@ -1340,13 +1342,15 @@ namespace TrayGuard
                         Flag = false;
                         errModule.Add(dr["module_id"].ToString());
                     }
-
+                    
                     for (int i = 0; i < dgvModule.Rows.Count; i++)
                     {
+                        string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\form.ini");
                         foreach (string s1 in errModule)
                         {
                             if (dgvModule["module_id", i].Value.ToString() == s1)
                             {
+                                dgvModule["location", i].Value = location;
                                 dgvModule["module_id", i].Style.BackColor = Color.Red;
                             }
                         }
@@ -1354,6 +1358,7 @@ namespace TrayGuard
                         {
                             if (dgvModule["bin", i].Value.ToString() == s1)
                             {
+                                dgvModule["location", i].Value = location;
                                 dgvModule["bin", i].Style.BackColor = Color.Red;
                             }
                         }
@@ -1361,7 +1366,6 @@ namespace TrayGuard
                         if (!(api == "OK" || api == ""))
                         {
                             Flag = false;
-                            string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\form.ini");
                             dgvModule["location", i].Value = location;
                             dgvModule["api", i].Style.BackColor = Color.Red;
                         }

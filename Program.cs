@@ -14,7 +14,7 @@ namespace TrayGuard
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Document.CreateDocument();
+            Pqm.CreateDocument();
             Application.Run(new frmLogin());
             //Application.Run(new frmModuleInTray());
         }
