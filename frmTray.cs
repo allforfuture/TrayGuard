@@ -69,9 +69,9 @@ namespace TrayGuard
             // ロールと部署による利用可能機能の制御
             // 2016/08/22 追加モードは全面禁止とする
             // 2016/12/06 追加モード復活
-            if (userRole == "super") { btnAddReturn.Enabled = true; btnAddReturn.Visible = true; }
-            if (userRole == "super" && txtLoginDept.Text == "QA") { btnCancelMultiTray.Enabled = true; btnCancelMultiTray.Visible = true; }
-            if (userRole == "super" && txtLoginDept.Text == "QA") { btnPartiallyCancel.Enabled = true; btnPartiallyCancel.Visible = true; }
+            //if (userRole == "super") { btnAddReturn.Enabled = true; btnAddReturn.Visible = true; }
+            //if (userRole == "super" && txtLoginDept.Text == "QA") { btnCancelMultiTray.Enabled = true; btnCancelMultiTray.Visible = true; }
+            //if (userRole == "super" && txtLoginDept.Text == "QA") { btnPartiallyCancel.Enabled = true; btnPartiallyCancel.Visible = true; }
         }
 
         // サブプロシージャ：データグリットビューの更新。親フォームで呼び出し、親フォームの情報を引き継ぐ

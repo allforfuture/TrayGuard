@@ -11,6 +11,7 @@ namespace TrayGuard
     class Pqm
     {
         readonly static string iniPath = Environment.CurrentDirectory + @"\config.ini";
+        readonly static bool isNewFormat = TfSQL.readIni_static("CSV", "isNewFormat", iniPath) == "0" ? false : true;
         readonly static string type = TfSQL.readIni_static("CSV", "type", iniPath);
         readonly static string factory = TfSQL.readIni_static("CSV", "factory", iniPath);
         readonly static string building = TfSQL.readIni_static("CSV", "building", iniPath);
@@ -34,8 +35,11 @@ namespace TrayGuard
                 string[] csvStr = new string[] { type, factory, building, line, process,
                     SN, "", "", DateTime.Now.ToString("yy,MM,dd,HH,mm,ss"), "1", inspect, "0.0",
                     checkItem, checkTotal, "1", "MACHINE",machineName };
+                string[] csvStr_New = new string[] { type, factory, building, line, process,
+                    SN, "", "", "", DateTime.Now.ToString("yy,MM,dd,HH,mm,ss"), "N/A", "N/A", "1", inspect, "0.0",
+                    checkItem, checkTotal, "1", "MACHINE",machineName };
 
-                string str = String.Join(",", csvStr);
+                string str = isNewFormat ? String.Join(",", csvStr_New) : String.Join(",", csvStr);
 
                 file.WriteLine(str);// 直接追加文件末尾，换行 
             }
