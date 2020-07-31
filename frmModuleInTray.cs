@@ -15,6 +15,8 @@ using System.Text.RegularExpressions;   //正規表現
 using System.Threading.Tasks;
 using System.Threading;
 
+using System.IO.Ports;
+
 namespace TrayGuard
 {
     public partial class frmModuleInTray : Form
@@ -133,6 +135,7 @@ namespace TrayGuard
 
             // バッチコンボボックスの設定
             setShiftComboBox();
+            LoadCOM();
         }
 
         // サブプロシージャ： テスター用ＳＥＬＥＣＴケース句の作成
@@ -415,8 +418,8 @@ namespace TrayGuard
         {
             DataTable distinct = dt.DefaultView.ToTable(true, new string[] { "module_id", "test_result" });
             DataRow[] dr;
-            if (totalSwitch == "ON") dr = distinct.Select("test_result in ('PASS','n/a')"); //distinct.Select(); ＦＡＩＬも流す、初期段階の設定
-            else dr = distinct.Select();  // マッチングスイッチオフの場合は、テスト結果に関係なく行数をカウントする
+            if (totalSwitch == "ON") dr = distinct.Select("module_id <> 'ERROR' and test_result in ('PASS','n/a')"); //distinct.Select(); ＦＡＩＬも流す、初期段階の設定
+            else dr = distinct.Select("module_id <> 'ERROR'");  // マッチングスイッチオフの場合は、テスト結果に関係なく行数をカウントする
 
             return dr.Length;
         }
@@ -472,6 +475,25 @@ namespace TrayGuard
         {
             // エンターキーの場合、テキストボックスの桁数が１７桁または２４桁の場合のみ、処理を行う
             if (e.KeyCode != Keys.Enter) return;
+            if (txtModuleId.Text == "ERROR")
+            {
+                DataRow dr1 = dtModule.NewRow();
+                dr1["module_id"] = txtModuleId.Text;
+                dr1["lot"] = "NONE";
+                dtModule.Rows.Add(dr1);
+                //validationSN(dr1);
+
+
+                // データグリットビューの更新
+                updateDataGridViews(dtModule, ref dgvModule);
+                //updateDataGridViews(dr1);
+
+
+                //トレー登録の準備確認
+                PreparePrintWhen24();
+                return;
+            }
+
             if (txtModuleId.Text.Length != 17 && txtModuleId.Text.Length != 24) return;
             //正規表現で(前から2桁)大文字なのかを確認、それ以外は禁止。例：FH171562074HM9X2VJQYA2N7はOK,fh17はNG
             Regex reg=new Regex("^[A-Z]{2}");
@@ -1090,7 +1112,7 @@ namespace TrayGuard
         }
 
         /// <summary>
-        /// check sn is exists dtModule
+        /// check sn is exists dtModule or ERROR
         /// </summary>
         /// <param name="dgv"></param>
         private void colorViewForDuplicateSerial(ref DataGridView dgv)
@@ -1102,7 +1124,7 @@ namespace TrayGuard
             {
                 string module = dgv["module_id", i].Value.ToString();
                 DataRow[] dr = dt.Select("module_id = '" + module + "'");
-                if (dr.Length >= 2)
+                if (dr.Length >= 2 || module == "ERROR")
                 {
                     string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\form.ini");
                     dgvModule["location", i].Value = location;
@@ -1374,6 +1396,127 @@ namespace TrayGuard
             });
             tasks.Add(t);
             await t;
+        }
+
+        string saveLast;
+        bool isTestMode;
+        string identifier;
+        void MessageShow(bool isShow, string message)
+        {
+            if (isShow) { MessageBox.Show(message); }
+        }
+        private void SptReceiveOrSend_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            byte[] readBuffer = new byte[SptReceiveOrSend.BytesToRead];
+            SptReceiveOrSend.Read(readBuffer, 0, readBuffer.Length);
+            string indata = Encoding.Default.GetString(readBuffer);
+            MessageShow(isTestMode, "串口1接收到" + readBuffer.Length + "字节Byte:\r\n" + indata);
+
+            //要是不能接收到完整的记录就存起来(最后一位是终止符",")
+            //if (indata.Substring(indata.Length - 1, 1) != ",")
+            终止符是[LF][CR]的情况
+            if (indata.Substring(indata.Length - 1, 1) != identifier)
+            {
+                saveLast += indata;
+                return;
+            }
+            indata = saveLast + indata;
+            saveLast = "";
+            //string[] SN = indata.Split(',');
+            string[] SN = indata.Split(new string[] { identifier }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string str in SN)
+            {
+                if (str == "") continue;
+                //if (str != "ERROR" && !SN.Contains("+") && str.Length != 17)
+                //{
+                //    Log.WriteError(str);
+                //}
+                this.Invoke(new Action(() =>
+                {
+                    //就是textbox输入
+                    //Action(str);
+
+                    txtModuleId.Text = str;
+
+                    //e.KeyCode != Keys.Enter;
+                    是回车的按键
+                    KeyEventArgs keyE=KeyEventArgs;
+                    txtModuleId_KeyDown(sender, keyE);
+                }));
+            }
+        }
+
+        void LoadCOM()
+        {
+            string iniPath = Environment.CurrentDirectory + @"\config.ini";
+            bool isOpen = TfSQL.readIni_static("Ports", "isOpen", iniPath) == "0" ? false : true;
+            if (!isOpen)
+                return;
+            isTestMode = TfSQL.readIni_static("Ports", "isTestMode", iniPath) == "0" ? false : true;
+            identifier = TfSQL.readIni_static("Ports", "identifier", iniPath);
+            string portName = TfSQL.readIni_static("Ports", "portName", iniPath);
+            int baudRate = int.Parse(TfSQL.readIni_static("Ports", "baudRate", iniPath));
+            int dataBits = int.Parse(TfSQL.readIni_static("Ports", "dataBits", iniPath));
+            string parityStr = TfSQL.readIni_static("Ports", "parity", iniPath);
+            string stopBitsStr = TfSQL.readIni_static("Ports", "stopBits", iniPath);
+
+            try
+            {
+                Parity parity = Parity.None;
+                switch (parityStr)
+                {
+                    case "偶":
+                        parity = Parity.Even;
+                        break;
+                    case "奇":
+                        parity = Parity.Odd;
+                        break;
+                    case "无":
+                        parity = Parity.None;
+                        break;
+                    case "标记":
+                        parity = Parity.Mark;
+                        break;
+                    case "空格":
+                        parity = Parity.Space;
+                        break;
+                }
+                StopBits stopBits = StopBits.One;
+                switch (stopBitsStr)
+                {
+                    case "1":
+                        stopBits = StopBits.One;
+                        break;
+                    case "1.5":
+                        stopBits = StopBits.OnePointFive;
+                        break;
+                    case "2":
+                        stopBits = StopBits.Two;
+                        break;
+                }
+
+                //打开串口
+                SptReceiveOrSend.Close();
+                SptReceiveOrSend.PortName = portName;
+                SptReceiveOrSend.BaudRate = baudRate;
+                SptReceiveOrSend.DataBits = dataBits;
+                SptReceiveOrSend.Parity = parity;
+                SptReceiveOrSend.StopBits = stopBits;
+                SptReceiveOrSend.Open();
+            }
+            catch (Exception ex)
+            {
+                SptReceiveOrSend.Close();
+                MessageBox.Show(ex.Message, "串口通讯：", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+            }
+        }
+
+        private void frmModuleInTray_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //不关闭串口，点击快的时候会串口占用。甚至会导致以下错误，程序无提示自动关闭
+            //你的应用进入了中断状态，但无任何代码显示，因为所有线程之前都在执行外部代码(通常为系统或框架代码)。
+            SptReceiveOrSend.Close();
         }
     }
 }

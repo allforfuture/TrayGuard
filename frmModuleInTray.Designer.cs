@@ -30,6 +30,7 @@ namespace TrayGuard
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModuleInTray));
             this.btnClose = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -57,6 +58,7 @@ namespace TrayGuard
             this.lblBin = new System.Windows.Forms.Label();
             this.btnRefillTray = new System.Windows.Forms.Button();
             this.btnExportModule = new System.Windows.Forms.Button();
+            this.SptReceiveOrSend = new System.IO.Ports.SerialPort(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvModule)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLotSummary)).BeginInit();
             this.SuspendLayout();
@@ -146,6 +148,7 @@ namespace TrayGuard
             this.txtModuleId.Name = "txtModuleId";
             this.txtModuleId.Size = new System.Drawing.Size(160, 21);
             this.txtModuleId.TabIndex = 5;
+            this.txtModuleId.Text = "ERROR";
             this.txtModuleId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtModuleId_KeyDown);
             // 
             // label3
@@ -328,6 +331,10 @@ namespace TrayGuard
             this.btnExportModule.UseVisualStyleBackColor = true;
             this.btnExportModule.Click += new System.EventHandler(this.btnExportModule_Click);
             // 
+            // SptReceiveOrSend
+            // 
+            this.SptReceiveOrSend.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.SptReceiveOrSend_DataReceived);
+            // 
             // frmModuleInTray
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -365,6 +372,7 @@ namespace TrayGuard
             this.Name = "frmModuleInTray";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "1-B. Module in Tray";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmModuleInTray_FormClosing);
             this.Load += new System.EventHandler(this.frmModule_Load);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.frmModuleInTray_MouseDoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.dgvModule)).EndInit();
@@ -402,6 +410,7 @@ namespace TrayGuard
         private System.Windows.Forms.Label lblBin;
         private System.Windows.Forms.Button btnRefillTray;
         private System.Windows.Forms.Button btnExportModule;
+        private System.IO.Ports.SerialPort SptReceiveOrSend;
     }
 }
 
