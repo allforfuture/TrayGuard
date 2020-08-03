@@ -481,7 +481,7 @@ namespace TrayGuard
                 dr1["module_id"] = txtModuleId.Text;
                 dr1["lot"] = "NONE";
                 dtModule.Rows.Add(dr1);
-                //validationSN(dr1);
+                validationSN(dr1);
 
 
                 // データグリットビューの更新
@@ -1126,7 +1126,7 @@ namespace TrayGuard
                 DataRow[] dr = dt.Select("module_id = '" + module + "'");
                 if (dr.Length >= 2 || module == "ERROR")
                 {
-                    string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\form.ini");
+                    string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\config.ini");
                     dgvModule["location", i].Value = location;
                     dgv["module_id", i].Style.BackColor = Color.Red;
                     soundAlarm();
@@ -1367,7 +1367,7 @@ namespace TrayGuard
                     
                     for (int i = 0; i < dgvModule.Rows.Count; i++)
                     {
-                        string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\form.ini");
+                        string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\config.ini");
                         foreach (string s1 in errModule)
                         {
                             if (dgvModule["module_id", i].Value.ToString() == s1)
@@ -1385,7 +1385,7 @@ namespace TrayGuard
                             }
                         }
                         string api = dgvModule["api", i].Value.ToString();
-                        if (!(api == "OK" || api == ""))
+                        if (api != "OK")
                         {
                             Flag = false;
                             dgvModule["location", i].Value = location;
@@ -1414,8 +1414,7 @@ namespace TrayGuard
 
             //要是不能接收到完整的记录就存起来(最后一位是终止符",")
             //if (indata.Substring(indata.Length - 1, 1) != ",")
-            终止符是[LF][CR]的情况
-            if (indata.Substring(indata.Length - 1, 1) != identifier)
+            if (indata.Substring(indata.Length - identifier.Length, identifier.Length) != identifier)
             {
                 saveLast += indata;
                 return;
@@ -1433,15 +1432,13 @@ namespace TrayGuard
                 //}
                 this.Invoke(new Action(() =>
                 {
-                    //就是textbox输入
                     //Action(str);
 
                     txtModuleId.Text = str;
-
-                    //e.KeyCode != Keys.Enter;
-                    是回车的按键
-                    KeyEventArgs keyE=KeyEventArgs;
-                    txtModuleId_KeyDown(sender, keyE);
+                    Keys keyResult = new Keys();
+                    keyResult = Keys.Enter;
+                    KeyEventArgs newEventArgs = new KeyEventArgs(keyResult);
+                    txtModuleId_KeyDown(sender, newEventArgs);
                 }));
             }
         }
@@ -1453,7 +1450,7 @@ namespace TrayGuard
             if (!isOpen)
                 return;
             isTestMode = TfSQL.readIni_static("Ports", "isTestMode", iniPath) == "0" ? false : true;
-            identifier = TfSQL.readIni_static("Ports", "identifier", iniPath);
+            identifier = TfSQL.readIni_static("Ports", "identifier", iniPath).Replace("[LF]", "\n").Replace("[CR]", "\r");
             string portName = TfSQL.readIni_static("Ports", "portName", iniPath);
             int baudRate = int.Parse(TfSQL.readIni_static("Ports", "baudRate", iniPath));
             int dataBits = int.Parse(TfSQL.readIni_static("Ports", "dataBits", iniPath));

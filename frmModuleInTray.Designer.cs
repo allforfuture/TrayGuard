@@ -148,7 +148,6 @@ namespace TrayGuard
             this.txtModuleId.Name = "txtModuleId";
             this.txtModuleId.Size = new System.Drawing.Size(160, 21);
             this.txtModuleId.TabIndex = 5;
-            this.txtModuleId.Text = "ERROR";
             this.txtModuleId.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtModuleId_KeyDown);
             // 
             // label3

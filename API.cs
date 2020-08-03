@@ -13,7 +13,7 @@ namespace TrayGuard
 {
     class API
     {
-        static string API_Path = TfSQL.readIni_static("API", "PATH", Environment.CurrentDirectory + @"\form.ini");
+        static string API_Path = TfSQL.readIni_static("API", "PATH", Environment.CurrentDirectory + @"\config.ini");
         public static string Judge(string SN)
         {
             //POST参数param
