@@ -1302,7 +1302,7 @@ namespace TrayGuard
             else dtTarget = dtModule;
 
             //Waite all asyns method is excute finish
-            Task.WaitAll(tasks.ToArray());
+            //Task.WaitAll(tasks.ToArray());
             if (!Flag)
             {
                 MessageBox.Show("Please check this items of backgroun red", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -1340,62 +1340,114 @@ namespace TrayGuard
         }
 
         //check sn by use asyns method
-        private async  void validationSN(DataRow dr)
-        {
+        //private async  void validationSN(DataRow dr)
+        //{
             
-            Task t= Task.Run(() =>
-            {
-                if (dtModule.Rows.Count > 0)
-                {
-                    //Thread.Sleep(10000);
-                    //check last sn bin and first sn bin is different
-                    if (dr["bin"].ToString() != dtModule.Rows[0]["bin"].ToString())
-                    {
-                        Flag = false;
-                        errBin.Add(dr["bin"].ToString());
-                    }
-                    //check last sn  is exists had shop 
-                    //DataGridViewRow row = dgvModule.Rows[dtModule.Rows.Count - 1];
-                    //DataRow dr = (row.DataBoundItem as DataRowView).Row;
-                    TfSQL tf = new TfSQL();
-                    string dbDuplicate = tf.sqlModuleDuplicateCheck(dr);
-                    if(dbDuplicate!=string.Empty)
-                    {
-                        Flag = false;
-                        errModule.Add(dr["module_id"].ToString());
-                    }
+        //    Task t= Task.Run(() =>
+        //    {
+        //        if (dtModule.Rows.Count > 0)
+        //        {
+        //            //Thread.Sleep(10000);
+        //            //check last sn bin and first sn bin is different
+        //            if (dr["bin"].ToString() != dtModule.Rows[0]["bin"].ToString())
+        //            {
+        //                Flag = false;
+        //                errBin.Add(dr["bin"].ToString());
+        //            }
+        //            //check last sn  is exists had shop 
+        //            //DataGridViewRow row = dgvModule.Rows[dtModule.Rows.Count - 1];
+        //            //DataRow dr = (row.DataBoundItem as DataRowView).Row;
+        //            TfSQL tf = new TfSQL();
+        //            string dbDuplicate = tf.sqlModuleDuplicateCheck(dr);
+        //            if(dbDuplicate!=string.Empty)
+        //            {
+        //                Flag = false;
+        //                errModule.Add(dr["module_id"].ToString());
+        //            }
                     
-                    for (int i = 0; i < dgvModule.Rows.Count; i++)
+        //            for (int i = 0; i < dgvModule.Rows.Count; i++)
+        //            {
+        //                string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\config.ini");
+        //                foreach (string s1 in errModule)
+        //                {
+        //                    if (dgvModule["module_id", i].Value.ToString() == s1)
+        //                    {
+        //                        dgvModule["location", i].Value = location;
+        //                        dgvModule["module_id", i].Style.BackColor = Color.Red;
+        //                    }
+        //                }
+        //                foreach (string s1 in errBin)
+        //                {
+        //                    if (dgvModule["bin", i].Value.ToString() == s1)
+        //                    {
+        //                        dgvModule["location", i].Value = location;
+        //                        dgvModule["bin", i].Style.BackColor = Color.Red;
+        //                    }
+        //                }
+        //                string api = dgvModule["api", i].Value.ToString();
+        //                if (api != "OK")
+        //                {
+        //                    Flag = false;
+        //                    dgvModule["location", i].Value = location;
+        //                    dgvModule["api", i].Style.BackColor = Color.Red;
+        //                }
+        //            }
+        //        }
+        //    });
+        //    tasks.Add(t);
+        //    await t;
+        //}
+
+        private void validationSN(DataRow dr)
+        {
+            if (dtModule.Rows.Count > 0)
+            {
+                //Thread.Sleep(10000);
+                //check last sn bin and first sn bin is different
+                if (dr["bin"].ToString() != dtModule.Rows[0]["bin"].ToString())
+                {
+                    Flag = false;
+                    errBin.Add(dr["bin"].ToString());
+                }
+                //check last sn  is exists had shop 
+                //DataGridViewRow row = dgvModule.Rows[dtModule.Rows.Count - 1];
+                //DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                TfSQL tf = new TfSQL();
+                string dbDuplicate = tf.sqlModuleDuplicateCheck(dr);
+                if (dbDuplicate != string.Empty)
+                {
+                    Flag = false;
+                    errModule.Add(dr["module_id"].ToString());
+                }
+
+                for (int i = 0; i < dgvModule.Rows.Count; i++)
+                {
+                    string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\config.ini");
+                    foreach (string s1 in errModule)
                     {
-                        string location = TfSQL.readIni_static("ROWS DISPLAY", (i + 1).ToString(), Environment.CurrentDirectory + @"\config.ini");
-                        foreach (string s1 in errModule)
+                        if (dgvModule["module_id", i].Value.ToString() == s1)
                         {
-                            if (dgvModule["module_id", i].Value.ToString() == s1)
-                            {
-                                dgvModule["location", i].Value = location;
-                                dgvModule["module_id", i].Style.BackColor = Color.Red;
-                            }
-                        }
-                        foreach (string s1 in errBin)
-                        {
-                            if (dgvModule["bin", i].Value.ToString() == s1)
-                            {
-                                dgvModule["location", i].Value = location;
-                                dgvModule["bin", i].Style.BackColor = Color.Red;
-                            }
-                        }
-                        string api = dgvModule["api", i].Value.ToString();
-                        if (api != "OK")
-                        {
-                            Flag = false;
                             dgvModule["location", i].Value = location;
-                            dgvModule["api", i].Style.BackColor = Color.Red;
+                            dgvModule["module_id", i].Style.BackColor = Color.Red;
                         }
+                    }
+                    foreach (string s1 in errBin)
+                    {
+                        if (dgvModule["bin", i].Value.ToString() == s1)
+                        {
+                            dgvModule["location", i].Value = location;
+                            dgvModule["bin", i].Style.BackColor = Color.Red;
+                        }
+                    }
+                    string api = dgvModule["api", i].Value.ToString();
+                    if (api != "OK")
+                    {
+                        Flag = false;
+                        dgvModule["location", i].Value = location;
+                        dgvModule["api", i].Style.BackColor = Color.Red;
                     }
                 }
-            });
-            tasks.Add(t);
-            await t;
+            }
         }
 
         string saveLast;
@@ -1414,15 +1466,20 @@ namespace TrayGuard
 
             //要是不能接收到完整的记录就存起来(最后一位是终止符",")
             //if (indata.Substring(indata.Length - 1, 1) != ",")
-            if (indata.Substring(indata.Length - identifier.Length, identifier.Length) != identifier)
+            string allStr = saveLast + indata;
+            if (allStr.Length - identifier.Length <= 0)
             {
                 saveLast += indata;
                 return;
             }
-            indata = saveLast + indata;
+            else if (allStr.Substring(allStr.Length - identifier.Length, identifier.Length) != identifier)
+            {
+                saveLast += indata;
+                return;
+            }
             saveLast = "";
             //string[] SN = indata.Split(',');
-            string[] SN = indata.Split(new string[] { identifier }, StringSplitOptions.RemoveEmptyEntries);
+            string[] SN = allStr.Split(new string[] { identifier }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string str in SN)
             {
                 if (str == "") continue;
@@ -1462,19 +1519,19 @@ namespace TrayGuard
                 Parity parity = Parity.None;
                 switch (parityStr)
                 {
-                    case "偶":
+                    case "Even":
                         parity = Parity.Even;
                         break;
-                    case "奇":
+                    case "Odd":
                         parity = Parity.Odd;
                         break;
-                    case "无":
+                    case "None":
                         parity = Parity.None;
                         break;
-                    case "标记":
+                    case "Mark":
                         parity = Parity.Mark;
                         break;
-                    case "空格":
+                    case "Space":
                         parity = Parity.Space;
                         break;
                 }
