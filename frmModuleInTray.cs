@@ -568,7 +568,7 @@ namespace TrayGuard
             dr["test_result"] = textResult;
             dr["test_date"] = DateTime.ParseExact(scanTime, "yyyy/MM/dd HH:mm:ss", CultureInfo.InvariantCulture); ;
             dr["r_mode"] = formReturnMode ? "T" : "F";
-            dr["api"] = API.Judge(module);
+            dr["api"] = API.Judge(module.Substring(0,17));
             dtModule.Rows.Add(dr);
             
             validationSN(dr);
