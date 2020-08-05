@@ -187,7 +187,6 @@ namespace TrayGuard
             this.txtOkCount.Size = new System.Drawing.Size(105, 21);
             this.txtOkCount.TabIndex = 5;
             this.txtOkCount.DoubleClick += new System.EventHandler(this.txtOkCount_DoubleClick);
-            this.txtOkCount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtOkCount_KeyDown);
             // 
             // label4
             // 
@@ -298,7 +297,6 @@ namespace TrayGuard
             this.cmbBinShift.Name = "cmbBinShift";
             this.cmbBinShift.Size = new System.Drawing.Size(105, 20);
             this.cmbBinShift.TabIndex = 44;
-            this.cmbBinShift.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbShift_KeyDown);
             // 
             // lblBin
             // 
