@@ -15,7 +15,12 @@ namespace TrayGuard
         readonly static string type = TfSQL.readIni_static("CSV", "type", iniPath);
         readonly static string factory = TfSQL.readIni_static("CSV", "factory", iniPath);
         readonly static string building = TfSQL.readIni_static("CSV", "building", iniPath);
-        readonly static string line = TfSQL.readIni_static("CSV", "line", iniPath);
+        readonly static string lineString = TfSQL.readIni_static("CSV", "lineString", iniPath);
+        static string[] lineArr = lineString.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+        static Dictionary<string, string> lineDic = lineArr.ToDictionary(
+            sKey => sKey.Split('|')[0],
+            sElement => sElement.Split('|')[1]
+            );
         readonly static string process = TfSQL.readIni_static("CSV", "process", iniPath);
         readonly static string inspect = TfSQL.readIni_static("CSV", "inspect", iniPath);
         readonly static string machineName = TfSQL.readIni_static("CSV", "MachineName", iniPath);
@@ -28,6 +33,7 @@ namespace TrayGuard
 
         public static void WriteCSV(string SN, string checkItem, string checkTotal)
         {
+            string line = lineDic[SN.Substring(7,1)];
             string fileName = type + factory + building + line + process + DateTime.Now.ToString("yyyyMMddHHmmss") + SN;
             string path = pqmPath + fileName + ".csv";
             using (StreamWriter file = new StreamWriter(path, true))
