@@ -24,7 +24,7 @@ namespace TrayGuard
         readonly static string process = TfSQL.readIni_static("CSV", "process", iniPath);
         readonly static string inspect = TfSQL.readIni_static("CSV", "inspect", iniPath);
         readonly static string machineName = TfSQL.readIni_static("CSV", "MachineName", iniPath);
-        readonly static string pqmPath = AppDomain.CurrentDomain.BaseDirectory + "pqm\\";
+        readonly static string pqmPath = TfSQL.readIni_static("CSV", "path", iniPath);
 
         public static void CreateDocument()
         {
@@ -34,8 +34,8 @@ namespace TrayGuard
         public static void WriteCSV(string SN, string checkItem, string checkTotal)
         {
             string line = lineDic[SN.Substring(7,1)];
-            string fileName = type + factory + building + line + process + DateTime.Now.ToString("yyyyMMddHHmmss") + SN;
-            string path = pqmPath + fileName + ".csv";
+            string fileName = type + factory + building + line + process + DateTime.Now.ToString("yyyyMMddHHmmss") + SN + ".csv";
+            string path = Path.Combine(pqmPath, fileName);
             using (StreamWriter file = new StreamWriter(path, true))
             {
                 string[] csvStr = new string[] { type, factory, building, line, process,
